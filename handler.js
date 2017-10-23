@@ -12,7 +12,7 @@ module.exports.hello = (event, context, callback) => {
 module.exports.healthcheck = (event, context, callback) => {
   const response = {
     statusCode: 200,
-    body: 'Super Kale healthy!',
+    body: 'Super healthy Kale!',
   };
   callback(null, response);
 };

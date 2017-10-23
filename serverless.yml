@@ -41,15 +41,15 @@ plugins:
 
 resources:
   Resources:
-  #  DnsEntry:
-  #    Type: 'AWS::Route53::RecordSet'
-  #    Properties:
-  #      HostedZoneId: 'ZLZOGWMKX62QG'
-  #      Name: "${self:provider.stage}.cintia.me"
-  #      Type: "A"
-  #      AliasTarget:
-  #        DNSName: { Fn::GetAtt: [ ApiGatewayDomainName, 'DistributionDomainName'] }
-  #        HostedZoneId: 'ZLZOGWMKX62QG'
+   DnsEntry:
+     Type: 'AWS::Route53::RecordSet'
+     Properties:
+       HostedZoneId: 'ZLZOGWMKX62QG'                  # cintia.me
+       Name: "${self:provider.stage}.cintia.me"
+       Type: "A"
+       AliasTarget:
+         DNSName: { Fn::GetAtt: [ ApiGatewayDomainName, 'DistributionDomainName'] }
+         HostedZoneId: 'Z2FDTNDATAQYW2'    # https://forums.aws.amazon.com/message.jspa?messageID=493441
    ApiGatewayDomainName:
       Type: AWS::ApiGateway::DomainName
       Properties:
