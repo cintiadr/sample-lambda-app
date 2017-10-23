@@ -1,4 +1,7 @@
 {
+  "name": "sample-lambda-app",
+  "version": "1.0.0",
+  "description": "Some awesome hello world",
   "devDependencies": {
     "serverless": "^1.23.0",
     "serverless-plugin-git-variables": "^2.0.0"

@@ -9,15 +9,27 @@ module.exports.hello = (event, context, callback) => {
   callback(null, response);
 };
 
-module.exports.healthcheck = (event, context, callback) => {
+module.exports.ping = (event, context, callback) => {
+  const response = {
+    statusCode: 200,
+    body: 'OK',
+  };
+  callback(null, response);
+};
+
+module.exports.metadata = (event, context, callback) => {
+  var pjson = require('./package.json');
+
   const response = {
     statusCode: 200,
     body: JSON.stringify({
-      my-sample-application: {
-        something:  process.env.GIT_ENV,
+      [pjson.name]: {
+        version: pjson.version,
+        description: pjson.description,
+        lastcommitsha:  process.env.GIT_ENV,
+        nodeversion: process.version,
       },
     }),
   };
-
   callback(null, response);
 };
