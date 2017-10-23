@@ -10,7 +10,7 @@ package:
     - dist/**
     - mock/**
     - scripts/**
-    - tmp/**
+    - .serverless/**
     - README.md
     - node_modules/serverless/**
 
@@ -39,13 +39,19 @@ functions:
 plugins:
   - serverless-plugin-git-variables
 
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+resources:
+  Resources:
+   DnsEntry:
+     Type: 'AWS::Route53::RecordSet'
+     Properties:
+       HostedZoneId: 'ZLZOGWMKX62QG'
+       Name: "${self:provider.stage}.cintia.me"
+       Type: "A"
+       AliasTarget:
+         DNSName: { Fn::GetAtt: [ ApiGatewayDomainName, 'DistributionDomainName'] }
+         HostedZoneId: 'ZLZOGWMKX62QG'
+   ApiGatewayDomainName:
+     Type: AWS::ApiGateway::DomainName
+     Properties:
+       CertificateArn: 'arn:aws:acm:us-east-1:839717296454:certificate/440c6909-474a-43ec-a42a-70cfd0e728b1'
+       DomainName: "${self:provider.stage}.cintia.me"
