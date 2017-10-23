@@ -1,0 +1,46 @@
+service: sample-lambda-app
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: ap-southeast-2
+
+package:
+  exclude:
+    - dist/**
+    - mock/**
+    - scripts/**
+    - tmp/**
+    - package.json
+    - README.md
+    - node_modules/serverless/**
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: /
+          method: get
+  healthcheck:
+    handler: handler.healthcheck
+    environment:
+      GIT_ENV: ${git:branch} - ${git:describe} - ${git:sha1}
+    events:
+      - http:
+          path: /healthcheck
+          method: get
+
+plugins:
+  - serverless-plugin-git-variables
+
+#resources:
+#  Resources:
+#    NewResource:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: my-new-bucket
+#  Outputs:
+#     NewOutput:
+#       Description: "Description for the output"
+#       Value: "Some output value"
