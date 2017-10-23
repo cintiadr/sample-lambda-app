@@ -4,5 +4,5 @@ set -e
 set -u
 set -x
 
-npm install --save serverless
-npm install --save serverless-plugin-git-variables
+npm install serverless -g
+npm install

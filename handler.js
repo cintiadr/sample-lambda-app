@@ -9,10 +9,10 @@ module.exports.hello = (event, context, callback) => {
   callback(null, response);
 };
 
-module.exports.ping = (event, context, callback) => {
+module.exports.healthcheck = (event, context, callback) => {
   const response = {
     statusCode: 200,
-    body: 'pong',
+    body: 'Super Kale healthy!',
   };
   callback(null, response);
 };

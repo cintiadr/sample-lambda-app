@@ -21,11 +21,11 @@ functions:
       - http:
           path: /
           method: get
-  ping:
-    handler: handler.ping
+  healthcheck:
+    handler: handler.healthcheck
     events:
       - http:
-          path: /ping
+          path: /healthcheck
           method: get
   metadata:
     handler: handler.metadata
@@ -41,17 +41,25 @@ plugins:
 
 resources:
   Resources:
-   DnsEntry:
-     Type: 'AWS::Route53::RecordSet'
-     Properties:
-       HostedZoneId: 'ZLZOGWMKX62QG'
-       Name: "${self:provider.stage}.cintia.me"
-       Type: "A"
-       AliasTarget:
-         DNSName: { Fn::GetAtt: [ ApiGatewayDomainName, 'DistributionDomainName'] }
-         HostedZoneId: 'ZLZOGWMKX62QG'
+  #  DnsEntry:
+  #    Type: 'AWS::Route53::RecordSet'
+  #    Properties:
+  #      HostedZoneId: 'ZLZOGWMKX62QG'
+  #      Name: "${self:provider.stage}.cintia.me"
+  #      Type: "A"
+  #      AliasTarget:
+  #        DNSName: { Fn::GetAtt: [ ApiGatewayDomainName, 'DistributionDomainName'] }
+  #        HostedZoneId: 'ZLZOGWMKX62QG'
    ApiGatewayDomainName:
-     Type: AWS::ApiGateway::DomainName
-     Properties:
-       CertificateArn: 'arn:aws:acm:us-east-1:839717296454:certificate/440c6909-474a-43ec-a42a-70cfd0e728b1'
-       DomainName: "${self:provider.stage}.cintia.me"
+      Type: AWS::ApiGateway::DomainName
+      Properties:
+        CertificateArn: 'arn:aws:acm:us-east-1:839717296454:certificate/440c6909-474a-43ec-a42a-70cfd0e728b1'
+        DomainName: "${self:provider.stage}.cintia.me"
+   ApiGatewayBase:
+      Type: "AWS::ApiGateway::BasePathMapping"
+      Properties:
+        BasePath: ''
+        DomainName: "${self:provider.stage}.cintia.me"
+        RestApiId:
+          Ref: ApiGatewayRestApi
+        Stage: ${self:provider.stage}
