@@ -4,4 +4,6 @@ set -e
 set -u
 set -x
 
-serverless deploy -v
+ENVIRONMENT="${1:-dev}"
+
+serverless deploy -v --stage $ENVIRONMENT
