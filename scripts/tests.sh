@@ -4,4 +4,5 @@ set -e
 set -u
 set -x
 
-ENVIRONMENT="${1:-dev}"
+export ENVIRONMENT="${1:-dev}"
+npm test
