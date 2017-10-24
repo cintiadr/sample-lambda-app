@@ -7,14 +7,20 @@ cache:
 
 before_script:
   - ./scripts/install.sh
-script:
-  - ./scripts/deploy.sh
-  - ./scripts/tests.sh
 
 deploy:
-  provider: script
-  script:
-    - ./scripts/deploy.sh prd
-    - ./scripts/tests.sh prd
-  on:
-    branch: production
+  - provider: script
+    script: "./scripts/deploy.sh dev"
+    skip_cleanup: true
+    on:
+      branch: master
+  - provider: script
+    script: "./scripts/deploy.sh prd"
+    skip_cleanup: true
+    on:
+      branch: production
+
+branches:
+  only:
+  - master
+  - production

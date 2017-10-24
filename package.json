@@ -13,6 +13,7 @@
     "serverless-plugin-git-variables": "^2.0.0"
   },
   "scripts": {
-    "test": "jasmine-node spec"
+    "deploy": "serverless deploy -v --stage $ENVIRONMENT",
+    "smoke-tests": "jasmine-node spec"
   }
 }

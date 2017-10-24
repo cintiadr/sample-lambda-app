@@ -30,8 +30,8 @@ AWS requirements:
 
 Local requirements:
   - AWS cli and credentials to deploy
-  - Node 6
-  - `./scripts/install.sh`
+  - Node 6 (can be via nvm)
+  - `./scripts/install.sh` to install all dependencies
 
 ### Deploying changes
 ```
@@ -39,10 +39,19 @@ Local requirements:
 $ ./scripts/deploy.sh
 
 # Running smoke tests against dev
-./scripts/tests.sh
+ENVIRONMENT=dev npm test
 ```
 
 Travis is configured to deploy branch `production` to the production environment.
+This branch should be pushed locally.
+
+(Yes, technically this breaks the whole concept of a proper pipeline,
+but that's the way travis works.)
+```
+$ git checkout production
+$ git reset --hard origin/master
+$ git push
+```
 
 ### Considerations
   - Lambda is running outside VPC; security considerations apply if your lambda
