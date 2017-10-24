@@ -1,6 +1,9 @@
 var request = require("request");
 
-var base_url = "https://" + process.env.ENVIRONMENT + ".cintia.me"
+var pjson = require('../conf.json');
+
+
+var base_url = "https://" + process.env.ENVIRONMENT + "." + pjson.zoneName
 
 describe("Hello World Server", function() {
   describe("GET /", function() {

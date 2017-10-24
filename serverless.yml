@@ -1,5 +1,7 @@
 service: sample-lambda-app
 
+custom: ${file(conf.json)}
+
 provider:
   name: aws
   runtime: nodejs6.10
@@ -13,7 +15,7 @@ package:
     - README.md
     - spec/**
     - .travis.yml
-    - node_modules/**
+    - node_modules/**  # our code doesn't use any runtime dependency
 
 functions:
   hello:
@@ -45,8 +47,8 @@ resources:
    DnsEntry:
      Type: 'AWS::Route53::RecordSet'
      Properties:
-       HostedZoneId: 'ZLZOGWMKX62QG'                  # cintia.me
-       Name: "${self:provider.stage}.cintia.me"
+       HostedZoneId: ${self:custom.zoneId}
+       Name: "${self:provider.stage}.${self:custom.zoneName}"
        Type: "A"
        AliasTarget:
          DNSName: { Fn::GetAtt: [ ApiGatewayDomainName, 'DistributionDomainName'] }
@@ -54,14 +56,14 @@ resources:
    ApiGatewayDomainName:
       Type: AWS::ApiGateway::DomainName
       Properties:
-        CertificateArn: 'arn:aws:acm:us-east-1:839717296454:certificate/440c6909-474a-43ec-a42a-70cfd0e728b1'
-        DomainName: "${self:provider.stage}.cintia.me"
+        CertificateArn: ${self:custom.certificate}
+        DomainName: "${self:provider.stage}.${self:custom.zoneName}"
    ApiGatewayBase:
       Type: "AWS::ApiGateway::BasePathMapping"
       DependsOn: HelloLambdaPermissionApiGateway  #https://github.com/serverless/serverless/issues/2233
       Properties:
         BasePath: ''
-        DomainName: "${self:provider.stage}.cintia.me"
+        DomainName: "${self:provider.stage}.${self:custom.zoneName}"
         RestApiId:
           Ref: ApiGatewayRestApi
         Stage: ${self:provider.stage}

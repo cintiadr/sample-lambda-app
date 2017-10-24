@@ -24,7 +24,7 @@ _Memetic Poetic Licence, not actually true_
 
 ### Requirements
 
-AWS requirements:
+AWS requirements(_conf.json_):
   - ACM Certificate
   - Route53 DNS zone
 
