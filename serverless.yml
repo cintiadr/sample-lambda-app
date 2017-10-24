@@ -31,7 +31,7 @@ functions:
   metadata:
     handler: handler.metadata
     environment:
-      GIT_ENV: ${git:branch} - ${git:sha1}
+      GIT_ENV: ${git:sha1}
     events:
       - http:
           path: /metadata
