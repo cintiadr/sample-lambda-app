@@ -6,6 +6,7 @@ module.exports.hello = (event, context, callback) => {
     body: 'The actual hello world, as expected.',
   };
 
+  console.log(event);
   callback(null, response);
 };
 
@@ -14,6 +15,7 @@ module.exports.healthcheck = (event, context, callback) => {
     statusCode: 200,
     body: 'Super healthy Kale!',
   };
+  console.log(event);
   callback(null, response);
 };
 
@@ -31,5 +33,6 @@ module.exports.metadata = (event, context, callback) => {
       },
     }),
   };
+  console.log(event);
   callback(null, response);
 };
