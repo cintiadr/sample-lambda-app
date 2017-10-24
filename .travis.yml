@@ -13,4 +13,4 @@ deploy:
   provider: script
   script: scripts/deploy.sh prd
   on:
-    branch: prd
+    branch: production
