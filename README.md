@@ -10,7 +10,7 @@ That's the most scalable hello world I've ever created.
 
 ![You cannot have outages if you don't have servers](https://memegenerator.net/img/instances/500x/80611404/you-cannot-have-outages-if-you-dont-have-servers.jpg)
 
-_Memetic Poetic Licence_
+_Memetic Poetic Licence, not actually true_
 
 #### Development environment
   - <https://dev.cintia.me>: hello world endpoint
@@ -55,19 +55,20 @@ $ ./scripts/push-prd.sh
 ```
 
 ### Considerations
+  - This code is in node due to the better integration with serverless framework,
+  but I'm not a node expert. Take my code with a pinch of salt;
   - Lambda is running outside VPC; security considerations apply if your lambda
-  handles sensitive data.
-  - Memory size and timeout are not being configured
-  - Environment variables are not encrypted
+  handles sensitive data;
+  - Memory size and timeout are not being configured;
+  - Environment variables are not encrypted, same security considerations;
   - There's no dashboards nor alarms for failures. Also, no dead letter queue
   configured for failures, nor AWS Xray.
-  - There's no de-duplication mechanism for lambda because they don't change state;
-  check [this blogpost](https://blog.sungardas.com/CTOLabs/2017/06/run-lambda-run/)
-  for details.
-  - Logs and basic metrics are automatically deployed to cloudwatch
-  - There are no unit nor integration tests, but you should check [Serverless Testing guide](https://serverless.com/framework/docs/providers/aws/guide/testing/).
-  if your lambda has actual functionalities.
-  Serverless offers a lot of help for local tests and debug.
-  - Smoke tests are done using Jasmine framework
-  - This code is in node due to the better integration with serverless framework,
-  but I'm not a node expert. Take my code with a pinch of salt.
+  - There's no de-duplication mechanism for lambda because they are not changing state.
+  Check [this blogpost](https://blog.sungardas.com/CTOLabs/2017/06/run-lambda-run/)
+  for details;
+  - Logs and basic metrics are automatically deployed to cloudwatch by default;
+  - There are no unit nor integration tests because the hello world is very basic,
+  but you should check [Serverless Testing guide](https://serverless.com/framework/docs/providers/aws/guide/testing/).
+  if your lambda is more complex.
+  Serverless offers a lot of help for local tests and debug;
+  - Smoke tests are done using Jasmine framework;
