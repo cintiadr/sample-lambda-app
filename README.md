@@ -9,6 +9,7 @@ It's using awesome [Serverless framework](https://serverless.com/) to deploy (al
 That's the most scalable hello world I've ever created.
 
 ![You cannot have outages if you don't have servers](https://memegenerator.net/img/instances/500x/80611404/you-cannot-have-outages-if-you-dont-have-servers.jpg)
+
 _Memetic Poetic Licence_
 
 #### Development environment
@@ -58,4 +59,4 @@ Travis is configured to deploy branch `production` to the production environment
   Serverless offers a lot of help for local tests and debug.
   - Smoke tests are done using Jasmine framework
   - This code is in node due to the better integration with serverless framework,
-  but I'm not a node expert. Take my code with a pint of salt.
+  but I'm not a node expert. Take my code with a pinch of salt.
