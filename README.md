@@ -68,7 +68,7 @@ $ ./scripts/push-prd.sh
   for details;
   - Logs and basic metrics are automatically deployed to cloudwatch by default;
   - There are no unit nor integration tests because the hello world is very basic,
-  but you should check [Serverless Testing guide](https://serverless.com/framework/docs/providers/aws/guide/testing/).
-  if your lambda is more complex.
-  Serverless offers a lot of help for local tests and debug;
+  but you should check [Serverless Testing guide](https://serverless.com/framework/docs/providers/aws/guide/testing/)
+  if your lambda is more complex than that.
+  Serverless offers a lot of help for local tests and debugging;
   - Smoke tests are done using Jasmine framework;
