@@ -8,11 +8,11 @@ provider:
 
 package:
   exclude:
-    - dist/**
-    - mock/**
     - scripts/**
     - .serverless/**
     - README.md
+    - spec/**
+    - .travis.yml
     - node_modules/**
 
 functions:
