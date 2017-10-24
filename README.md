@@ -51,9 +51,7 @@ This branch should be pushed locally.
 (Yes, technically this breaks the whole concept of a proper pipeline,
 but that's the way travis works.)
 ```
-$ git checkout production
-$ git reset --hard origin/master
-$ git push
+$ ./scripts/push-prd.sh
 ```
 
 ### Considerations
