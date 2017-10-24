@@ -3,6 +3,9 @@
 module.exports.hello = (event, context, callback) => {
   const response = {
     statusCode: 200,
+    headers: {
+      "Content-Type" : "text/html"
+    },
     body: 'The actual hello world, as expected.',
   };
 
@@ -13,6 +16,9 @@ module.exports.hello = (event, context, callback) => {
 module.exports.healthcheck = (event, context, callback) => {
   const response = {
     statusCode: 200,
+    headers: {
+      "Content-Type" : "text/html"
+    },
     body: 'Super healthy Kale!',
   };
   console.log(event);
