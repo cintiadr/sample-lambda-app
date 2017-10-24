@@ -43,12 +43,12 @@ describe("Hello World Server", function() {
       });
     });
 
-    // it("returns healthy kale", function(done) {
-    //   request.get(base_url + "/healthcheck", function(error, response, body) {
-    //     expect(body).toBe("Super healthy Kale!");
-    //     done();
-    //   });
-    // });
+    it("returns app metadata", function(done) {
+      request.get(base_url + "/metadata", function(error, response, body) {
+        expect(body).toContain("sample-lambda-app");
+        done();
+      });
+    });
   });
 
 });

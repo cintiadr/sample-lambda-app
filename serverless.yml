@@ -13,7 +13,7 @@ package:
     - scripts/**
     - .serverless/**
     - README.md
-    - node_modules/serverless/**
+    - node_modules/**
 
 functions:
   hello:
@@ -58,6 +58,7 @@ resources:
         DomainName: "${self:provider.stage}.cintia.me"
    ApiGatewayBase:
       Type: "AWS::ApiGateway::BasePathMapping"
+      DependsOn: HelloLambdaPermissionApiGateway  #https://github.com/serverless/serverless/issues/2233
       Properties:
         BasePath: ''
         DomainName: "${self:provider.stage}.cintia.me"

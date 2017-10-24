@@ -35,11 +35,14 @@ Local requirements:
 
 ### Deploying changes
 ```
+# Build cloudformation for dev
+$ ENVIRONMENT=dev npm run package
+
 # Deploying to dev
-$ ./scripts/deploy.sh
+$ ENVIRONMENT=dev npm run deploy
 
 # Running smoke tests against dev
-ENVIRONMENT=dev npm test
+$ ENVIRONMENT=dev npm run smoke-tests
 ```
 
 Travis is configured to deploy branch `production` to the production environment.
@@ -56,6 +59,7 @@ $ git push
 ### Considerations
   - Lambda is running outside VPC; security considerations apply if your lambda
   handles sensitive data.
+  - Memory size and timeout are not being configured
   - Environment variables are not encrypted
   - There's no dashboards nor alarms for failures. Also, no dead letter queue
   configured for failures, nor AWS Xray.
