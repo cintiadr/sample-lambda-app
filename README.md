@@ -30,7 +30,7 @@ AWS requirements(_conf.json_):
 
 Local requirements:
   - AWS cli and credentials to deploy
-  - Node 6 (can be via nvm)
+  - Node 10.x (can be via `nvm use`)
   - `./scripts/install.sh` to install all dependencies
 
 ### Deploying changes
