@@ -10,7 +10,7 @@
   "scripts": {
     "package": "serverless package -v --stage $ENVIRONMENT",
     "deploy": "serverless deploy -v --stage $ENVIRONMENT --force",
-    "smoke-tests": "jasmine spec"
+    "smoke-tests": "jasmine"
   },
   "dependencies": {
     "serverless-plugin-git-variables": "^3.3.1"
